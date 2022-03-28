@@ -22,7 +22,7 @@ file:
         interactive: True
         terminal: True
     name: 01-quickstart.py
-    path: ~/Roboczy/Python/PyTorch/
+    path: ~/Projects/AIML/NNRL/PyTorch
     date: 2022-03-13
     authors:
         - nick: rcando
@@ -73,7 +73,9 @@ training_data.classes
 # ['T-shirt/top', 'Trouser', 'Pullover', 'Dress', 'Coat', 'Sandal', 'Shirt', 'Sneaker', 'Bag', 'Ankle boot']
 
 training_data.train_labels  #! warnings.warn("train_labels has been renamed targets")
+training_data.train_labels.shape    # torch.Size([60000])
 training_data.test_labels   #! warnings.warn("test_labels has been renamed targets"
+training_data.test_labels.shape    # torch.Size([60000])
 all(training_data.test_labels == training_data.train_labels)  # True !!!
 
 training_data.target_transform  # None

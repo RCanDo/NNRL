@@ -72,7 +72,7 @@ class Net(nn.Module):
         x = self.max_pool(x)
 
         x = F.relu(self.conv2(x))
-        x = F.relu(self.conv2(x))
+        x = F.relu(self.conv2(x))   #??? independent copy ???
         x = self.max_pool(x)
 
         x = F.relu(self.conv2(x))
@@ -139,8 +139,8 @@ images.size(2)  # 28
 images.size(4)  #! IndexError: Dimension out of range (expected to be in range of [-4, 3], but got 4)
 
 #%%
-optimizer = torch.optim.Adam(model.parameters(), lr=0.001)
 loss_function = nn.CrossEntropyLoss()
+optimizer = torch.optim.Adam(model.parameters(), lr=0.001)
 
 #%%
 # Train the model
@@ -154,14 +154,16 @@ for epoch in range(num_epochs):
         images = images.to(device)
         labels = labels.to(device)
 
-        # Forward pass
+        # Forward pass --------------------------
+        # i.e. compute prediction and loss
         outputs = model(images)
         loss = loss_function(outputs, labels)
-
-        # Backward and optimize
+        # Backward pass -------------------------
+        # i.e. backpropagation
         optimizer.zero_grad()
         loss.backward()
         optimizer.step()
+        # ---------------------------------------
 
         if (i+1) % 100 == 0:
             print ('Epoch [{}/{}], Step [{}/{}], Loss: {:.4f}'
@@ -189,6 +191,7 @@ with torch.no_grad():   #!!!
 
 #%%
 images, labels = next(islice(test_loader, 1))
+images, labels = next(iter(test_loader))
 images.shape    # torch.Size([32, 1, 28, 28])
 labels.shape    # torch.Size([32])
 
