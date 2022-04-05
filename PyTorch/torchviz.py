@@ -21,7 +21,7 @@ sources:
 file:
     usage:
         interactive: True
-        terminal: True
+        terminal: False
     name: torchviz.py
     path: ~/Projects/AIML/NNRL/PytTorch/
     date: 2022-03-27
@@ -80,6 +80,11 @@ resize_graph(dot, size_per_element=0.15, min_size=12)
     Modify the graph in place.
 """
 #%%
+import torch
+import torch.nn as nn
+import torchviz as tv
+
+#%%
 model = nn.Sequential()
 model.add_module('W0', nn.Linear(8, 16))
 model.add_module('tanh', nn.Tanh())
@@ -88,10 +93,28 @@ model.add_module('W1', nn.Linear(16, 1))
 x = torch.randn(1, 8)
 y = model(x)
 
+dict(model.named_parameters())      # dict( generator )
+
+tv.make_dot(y)
+
+tv.make_dot(y.mean())
+
+# add proper tensors/params names (to _leaves_ mainly)
 tv.make_dot(y.mean(), params=dict(model.named_parameters()))
 
-# Set show_attrs=True and show_saved=True to see what autograd saves for the backward pass.
+# Set  `show_attrs=True` and `show_saved=True`
+# to see what autograd saves for the backward pass.
 # (Note that this is only available for pytorch >= 1.9.)
 tv.make_dot(y.mean(), params=dict(model.named_parameters()), show_attrs=True, show_saved=True)
+tv.make_dot(y.mean(), params=dict(model.named_parameters()), show_attrs=True)
+tv.make_dot(y.mean(), params=dict(model.named_parameters()), show_saved=True)
+
+#%%
+
+
+
+#%%
+
+
 
 #%%

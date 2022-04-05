@@ -5,11 +5,11 @@
 # This is YAML, see: https://yaml.org/spec/1.2/spec.html#Preview
 # !!! YAML message always begins with ---
 
-title: Automatic Differentiation with torch.autograd
+title: Loading Imagas With Torchvision
 subtitle:
 version: 1.0
 type: module
-keywords: [PyTorch, NN, AI]   # there are always some keywords!
+keywords: [PyTorch, Torchvision, PIL, imageio]      # there are always some keywords!
 description: |
 remarks:
 todo:
@@ -17,8 +17,6 @@ sources:
     - title: Pillow library
       link: ~/Roboczy/Python/graphics/Pillow/01-quick_guide.py
     - title: imageio library
-      link:
-    - title:
       link:
 file:
     usage:

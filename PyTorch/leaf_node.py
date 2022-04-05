@@ -19,7 +19,7 @@ sources:
 file:
     usage:
         interactive: True
-        terminal: True
+        terminal: False
     name: leaf_node.py
     path: ~/Projects/AIML/NNRL/PytTorch/
     date: 2022-03-27
@@ -64,7 +64,7 @@ f
 
 #%%
 s = f.sum()
-s
+s       # tensor(1.5494, grad_fn=<SumBackward0>)
 
 """
 The graph illustrating this is below
