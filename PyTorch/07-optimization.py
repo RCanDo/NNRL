@@ -175,6 +175,7 @@ and test_loop that evaluates the model’s performance against our test data.
 
 def train_loop(dataloader, model, loss_fn, optimizer):
     size = len(dataloader.dataset)
+
     for batch, (X, y) in enumerate(dataloader):
 
         # Forward pass --------------------------
